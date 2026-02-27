@@ -1,0 +1,32 @@
+#include <iostream>
+#include <unordered_map>
+#include <string>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    cin.ignore();   // Ignore newline after integer input
+
+    unordered_map<string, int> mp;
+
+    for (int i = 0; i < n; i++) {
+        string team;
+        getline(cin, team);
+        mp[team]++;   // Same as getOrDefault in Java
+    }
+
+    string winner = "";
+    int maxGoals = 0;
+
+    for (auto &pair : mp) {
+        if (pair.second > maxGoals) {
+            maxGoals = pair.second;
+            winner = pair.first;
+        }
+    }
+
+    cout << winner << endl;
+
+    return 0;
+}
